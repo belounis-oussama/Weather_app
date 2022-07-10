@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class WeatherCostumAdapter extends RecyclerView.Adapter<WeatherCostumAdapter.MyViewHolder>{
@@ -41,6 +43,8 @@ public class WeatherCostumAdapter extends RecyclerView.Adapter<WeatherCostumAdap
         holder.windSpeed.setText(weatherModel.getWindSpeed());
         holder.time.setText(weatherModel.getTime());
 
+        String iconlink="https://openweathermap.org/img/wn/"+weatherModel.getIcon()+"@4x.png";
+        Picasso.get().load(iconlink).into(holder.condition);
 
 
     }

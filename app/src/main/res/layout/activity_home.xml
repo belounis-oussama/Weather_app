@@ -7,6 +7,23 @@
     android:background="?attr/colorPrimary"
     tools:context=".HomeActivity">
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        android:id="@+id/ProgressBar"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/weatherhome"
+        android:visibility="gone"
+        >
+
+
+
 
     <EditText
         android:id="@+id/citytext"
@@ -43,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-
+                android:textStyle="bold"
                 android:text="23"
                 android:layout_gravity="center"
                 android:textColor="?attr/colorOnPrimary"
@@ -120,8 +137,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/forecastweather"
         android:layout_below="@id/conditionandtime"
-        android:background="@drawable/recyclebackgroud" />
+        android:background="?attr/colorPrimary" />
 
 
-
+    </RelativeLayout>
 </RelativeLayout>

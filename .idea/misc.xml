@@ -8,7 +8,8 @@
         <entry key="app/src/main/res/drawable/recyclebackgroud.xml" value="0.1825" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/weatheritem.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/dailyweatheritem.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/weatheritem.xml" value="0.75" />
       </map>
     </option>
   </component>
