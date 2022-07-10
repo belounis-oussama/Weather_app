@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+    tools:context=".MainActivity">
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/citytext"
+                android:hint="City name"
+                android:layout_marginTop="20dp"
+                android:paddingEnd="10dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="?attr/colorOnPrimary"
+                android:drawableEnd="@drawable/ic_round_search_24"
+                android:drawableTint="?attr/colorOnPrimary"
+                android:textColorHint="?attr/colorOnPrimary"
+                />
+
+    <LinearLayout
+        android:id="@+id/tempandcityname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/citytext"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            android:text="23"
+            android:layout_gravity="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="70sp" />
+
+        <TextView
+            android:id="@+id/cityname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="City name"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp"
+
+            />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/iconweather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tempandcityname"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@mipmap/ic_launcher" />
+
+
+        <TextView
+            android:id="@+id/contdiontext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iconweather"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Condition"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnPrimary" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/recycleview"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="Today's Weather Forecast"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnPrimary"
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal" />
+
+
+
+    </RelativeLayout>
+
