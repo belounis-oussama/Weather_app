@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,9 +43,17 @@ public class WeatherCostumAdapter extends RecyclerView.Adapter<WeatherCostumAdap
         holder.temp.setText(weatherModel.getTempreture());
         holder.windSpeed.setText(weatherModel.getWindSpeed());
         holder.time.setText(weatherModel.getTime());
+        holder.humidity.setText(weatherModel.getHumidity()+" %");
+       // int iconDrwbl=getWeatherIcon(weatherModel.getIcon());
+       // Toast.makeText(context, weatherModel.getIcon(), Toast.LENGTH_SHORT).show();
+       // holder.condition.setBackgroundResource(iconDrwbl);
+        //holder.condition.setImageDrawable(holder.itemView.getResources().getDrawable(iconDrwbl));
 
-        String iconlink="https://openweathermap.org/img/wn/"+weatherModel.getIcon()+"@4x.png";
-        Picasso.get().load(iconlink).into(holder.condition);
+       // holder.condition.setImageResource(R.drawable.clearskyday);
+     String iconlink="https://openweathermap.org/img/wn/"+weatherModel.getIcon()+"@4x.png";
+
+      Picasso.get().load(iconlink).into(holder.condition);
+
 
 
     }
@@ -55,7 +64,7 @@ public class WeatherCostumAdapter extends RecyclerView.Adapter<WeatherCostumAdap
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView windSpeed,temp,time;
+        private TextView windSpeed,temp,time,humidity;
         private ImageView condition;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +73,32 @@ public class WeatherCostumAdapter extends RecyclerView.Adapter<WeatherCostumAdap
             temp=itemView.findViewById(R.id.itemtemp);
             time=itemView.findViewById(R.id.itemtime);
             condition=itemView.findViewById(R.id.condition);
+            humidity=itemView.findViewById(R.id.itemhumidity);
         }
+    }
+
+    private int getWeatherIcon(String iconString) {
+        int drwblresult=R.drawable.clearskyday;
+
+        if (iconString.equals("01d")) drwblresult=R.drawable.clearskyday;
+        if (iconString.equals("01n")) drwblresult=R.drawable.clearskynight;
+        if (iconString.equals("02d")) drwblresult=R.drawable.fewcloudsday;
+        if (iconString.equals("02n")) drwblresult=R.drawable.fewcloudsnight;
+        if (iconString.equals("03d")) drwblresult=R.drawable.scattered_cloudsnd;
+        if (iconString.equals("03n")) drwblresult=R.drawable.scattered_cloudsnd;
+        if (iconString.equals("04d")) drwblresult=R.drawable.brokencloudsdn;
+        if (iconString.equals("04n")) drwblresult=R.drawable.brokencloudsdn;
+        if (iconString.equals("09d")) drwblresult=R.drawable.showerraindn;
+        if (iconString.equals("09n")) drwblresult=R.drawable.showerraindn;
+        if (iconString.equals("10d")) drwblresult=R.drawable.rain_day;
+        if (iconString.equals("10n")) drwblresult=R.drawable.rain_night;
+        if (iconString.equals("11d")) drwblresult=R.drawable.thunderstromdn;
+        if (iconString.equals("11n")) drwblresult=R.drawable.thunderstromdn;
+        if (iconString.equals("13d")) drwblresult=R.drawable.snowdn;
+        if (iconString.equals("13n")) drwblresult=R.drawable.snowdn;
+        if (iconString.equals("50d")) drwblresult=R.drawable.mist_day;
+        if (iconString.equals("50n")) drwblresult=R.drawable.mist_night;
+
+        return drwblresult;
     }
 }

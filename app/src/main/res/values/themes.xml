@@ -3,12 +3,13 @@
     <style name="Theme.Weatherapp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/dark_blue</item>
-        <item name="colorPrimaryVariant">@color/middle_blue</item>
-        <item name="colorOnPrimary">@color/white_blue</item>
+        <item name="colorPrimaryVariant">@color/light_blue</item>
+        <item name="colorOnPrimary">@color/black_blue</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/light_blue</item>
-        <item name="colorSecondaryVariant">@color/middle_blue</item>
-        <item name="colorOnSecondary">@color/black_blue</item>
+        <item name="colorSecondary">@color/yellowcolor</item>
+        <item name="colorSecondaryVariant">@color/middle_bluedarker</item>
+        <item name="colorOnSecondary">@color/white_blue</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
 

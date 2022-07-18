@@ -6,15 +6,17 @@ public class WeatherModel {
     private String tempreture;
     private String icon;
     private String windSpeed;
+    private String humidity;
 
     public WeatherModel() {
     }
 
-    public WeatherModel(String time, String tempreture, String icon, String windSpeed) {
+    public WeatherModel(String time, String tempreture, String icon, String windSpeed, String humidityy) {
         this.time = time;
         this.tempreture = tempreture;
         this.icon = icon;
         this.windSpeed = windSpeed;
+        this.humidity = humidityy;
     }
 
 
@@ -46,6 +48,14 @@ public class WeatherModel {
         return windSpeed;
     }
 
+    public String getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
+    }
+
     public void setWindSpeed(String windSpeed) {
         this.windSpeed = windSpeed;
     }
@@ -57,6 +67,7 @@ public class WeatherModel {
                 ", tempreture='" + tempreture + '\'' +
                 ", icon='" + icon + '\'' +
                 ", windSpeed='" + windSpeed + '\'' +
+                ", humidity='" + humidity + '\'' +
                 '}';
     }
 }

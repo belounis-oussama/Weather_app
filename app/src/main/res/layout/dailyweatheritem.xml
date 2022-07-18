@@ -3,40 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="?attr/colorPrimary">
+   >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
 
         >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Today"
-        android:textColor="?attr/colorOnPrimary"
-        android:layout_margin="10dp"
-        />
+
+        <TextView
+            android:id="@+id/day_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Today"
+            android:textColor="?attr/colorOnPrimary" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+
             android:layout_margin="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/condition"
-            >
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_wind"
                 android:layout_gravity="center"
-                app:tint="?attr/colorOnPrimary" />
+                android:src="@drawable/ic_wind"
+                app:tint="?attr/colorOnPrimary"
+                 />
+
             <TextView
-                android:id="@+id/itemspeedwind"
+                android:id="@+id/itemspeedwindd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -55,24 +56,18 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="10dp"
-            >
+            android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/conditiond"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_margin="5dp"
                 android:layout_below="@id/itemtemp"
+                android:layout_margin="5dp"
                 android:src="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:id="@+id/conditionn"
-                android:layout_width="40dp"
-                android:layout_margin="5dp"
-                android:layout_height="40dp"
-                android:layout_below="@id/itemtemp"
-                android:src="@mipmap/ic_launcher" />
+
 
         </LinearLayout>
 
@@ -80,9 +75,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="10dp"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/itemtempd"
@@ -97,22 +91,10 @@
                 android:textSize="18sp"
 
                 />
-            <TextView
-                android:id="@+id/itemtempn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/itemtime"
-                android:gravity="center"
-                android:padding="4dp"
-                android:text="10 C"
-                android:textAlignment="center"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="18sp"
 
-                />
+
 
         </LinearLayout>
-
 
 
     </LinearLayout>

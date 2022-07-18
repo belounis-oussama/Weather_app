@@ -10,10 +10,13 @@
 
 
 
-    <color name="dark_blue">#18395A</color>
-    <color name="light_blue">#5A82A5</color>
+    <color name="dark_blue">#8ecae6</color>
+    <color name="light_blue">#023047</color>
     <color name="middle_blue">#418DAEBD</color>
-    <color name="white_blue">#CED2DE</color>
+    <color name="middle_bluedarker">#33023047</color>
+    <color name="white_blue">#faf2ef</color>
     <color name="black_blue">#07121c</color>
+
+    <color name="yellowcolor">#FF6B41</color>
 
 </resources>

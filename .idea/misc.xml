@@ -3,13 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/buttonbackgroud.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/clearskyday.xml" value="0.1825" />
         <entry key="app/src/main/res/drawable/itembackgroud.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/kebab_menu_icon.xml" value="0.1825" />
         <entry key="app/src/main/res/drawable/rand.xml" value="0.1825" />
         <entry key="app/src/main/res/drawable/recyclebackgroud.xml" value="0.1825" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/dailyweatheritem.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/dailyweatheritem.xml" value="0.33" />
         <entry key="app/src/main/res/layout/weatheritem.xml" value="0.75" />
+        <entry key="app/src/main/res/menu/menutoolbar.xml" value="0.21458333333333332" />
       </map>
     </option>
   </component>

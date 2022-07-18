@@ -5,140 +5,255 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
+    android:id="@+id/weatherhome"
     tools:context=".HomeActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="?attr/colorOnPrimary" />
+
 
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/ProgressBar"
+        android:backgroundTint="?attr/colorSecondary"
         />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/weatherhome"
-        android:visibility="gone"
-        >
 
 
 
+    <LinearLayout
 
-    <EditText
-        android:id="@+id/citytext"
-        android:layout_width="match_parent"
+        android:id="@+id/imageandtemp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="10dp"
-        android:backgroundTint="?attr/colorOnPrimary"
-        android:drawableEnd="@drawable/ic_round_search_24"
-        android:drawableTint="?attr/colorOnPrimary"
-        android:hint="City name"
-        android:paddingEnd="10dp"
-        android:textColor="?attr/colorOnPrimary"
-        android:textColorHint="?attr/colorOnPrimary" />
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/tempcityandicon"
-        android:layout_below="@id/citytext"
-        >
-        <LinearLayout
-            android:id="@+id/tempandcityname"
+        <ImageView
+            android:id="@+id/iconweather"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_below="@+id/citynameholder"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
+
+
+            >
 
             <TextView
                 android:id="@+id/Temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
+                android:layout_alignParentTop="true"
                 android:text="23"
-                android:layout_gravity="center"
                 android:textColor="?attr/colorOnPrimary"
-                android:textSize="70sp" />
+                android:textSize="70sp"
+
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/cityname"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:text="City name"
-                android:textAlignment="center"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="18sp"
+                android:layout_toEndOf="@id/Temp"
 
-                />
-        </LinearLayout>
+                android:text="°C"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
-        <ImageView
-            android:id="@+id/iconweather"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="10dp"
-            android:src="@mipmap/ic_launcher" />
+        </RelativeLayout>
 
 
-    </RelativeLayout>
 
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/conditionandtime"
-        android:layout_below="@+id/tempcityandicon"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:id="@+id/citynameholder"
+        android:layout_below="@+id/imageandtemp"
 
         >
 
-        <TextView
-            android:id="@+id/contdiontext"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:text="Condition"
-            android:textAlignment="center"
-            android:textColor="?attr/colorOnPrimary" />
+            android:src="@drawable/ic_baseline_location_on_24"
+            app:tint="?attr/colorSecondary" />
 
         <TextView
-            android:id="@+id/timetext"
+            android:id="@+id/cityname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="Sun, 12:23"
+            android:gravity="center"
+            android:text="City name"
             android:textAlignment="center"
-            android:textColor="?attr/colorOnPrimary" />
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp"
 
+            />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <!-->
+
+
+   <TextView
+       android:id="@+id/timetext"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/citynameholder"
+       android:layout_centerHorizontal="true"
+       android:layout_marginStart="5dp"
+       android:layout_marginTop="5dp"
+       android:layout_marginEnd="5dp"
+       android:layout_marginBottom="5dp"
+       android:text="Sun, 12:23"
+       android:textAlignment="center"
+       android:textColor="?attr/colorOnPrimary" />
+ </!-->
+    <TextView
+        android:id="@+id/contdiontext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/citynameholder"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="Condition"
+        android:textAlignment="center"
+        android:textColor="?attr/colorSecondary" />
+
+
+
+    <LinearLayout
+        android:id="@+id/sensetsenrise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_below="@+id/contdiontext"
+        android:layout_marginStart="50dp"
+
+
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_ep_sunrise" />
+
+            <TextView
+                android:id="@+id/sunset"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="10:00"
+                android:layout_margin="5dp"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="16sp"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:orientation="horizontal"
+
+            >
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_ep_sunset" />
+
+            <TextView
+                android:id="@+id/sunrise"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="00:00"
+                android:layout_margin="5dp"
+
+                android:textColor="?attr/colorSecondary"
+                android:textSize="16sp"
+
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/forecastweather"
-        android:layout_below="@id/conditionandtime"
-        android:background="?attr/colorPrimary" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sensetsenrise"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="?attr/colorPrimary"
+        android:overScrollMode="never" />
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/forecastweatherday"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/sensetsenrise"
+       android:visibility="gone"
+       android:layout_marginTop="30dp"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp"
+       android:background="@drawable/recyclebackgroud"
+
+       android:overScrollMode="never" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonbackgroud"
+        android:layout_alignParentBottom="true"
+        android:textColor="?attr/colorOnPrimary"
+        android:text="Next 5 days forecast"
+        android:textAllCaps="false"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        />
 
 
-    </RelativeLayout>
 </RelativeLayout>

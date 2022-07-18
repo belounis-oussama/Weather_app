@@ -3,6 +3,7 @@ package com.example.weather_app;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +22,9 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -42,10 +46,10 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -54,16 +58,21 @@ import java.util.Locale;
 public class HomeActivity extends AppCompatActivity implements LocationListener {
 
 
-    TextView citynamev,tempv,conditionv;
+    TextView citynamev,tempv,conditionv,sunsetV;
     EditText citynametext;
     ImageView backgroud,icon,searchicon;
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager layouyt;
+    RecyclerView recyclerView,recyclerViewdaily;
+
     List<WeatherModel> weatherForcaste;
+    List<WeatherModelDaily> weatherForcastedaily;
     LocationManager locationManager;
-    TextView timetext;
-    private WeatherAdapter adapter;
-    private ArrayList<WeatherModel> weatherModelArrayList;
+    Toolbar toolbar;
+
+
+    TextView sunrise;
+
+
+
 
 
     RelativeLayout weatherhome;
@@ -88,15 +97,17 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
 
 
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationEnabled();
         getLocation();
 
 
-
+        setSupportActionBar(toolbar);
 
 
         weatherForcaste = new ArrayList<>();
+        weatherForcastedaily =new ArrayList<>();
 
 
 
@@ -111,18 +122,43 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
 
 
+        LinearLayoutManager manager2 = new LinearLayoutManager(this);
+        manager2.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerViewdaily.setLayoutManager(manager2);
+
+
+
+        DailyWeatherCostumAdapter adapter2=new DailyWeatherCostumAdapter(this,weatherForcastedaily);
+        recyclerViewdaily.setAdapter(adapter2);
+
+
+
+
+
+
+
+
     }
 
     private void initWidget() {
         citynamev=findViewById(R.id.cityname);
         tempv=findViewById(R.id.Temp);
         conditionv=findViewById(R.id.contdiontext);
-        citynametext=findViewById(R.id.citytext);
+        sunrise=findViewById(R.id.sunrise);
+
         recyclerView=findViewById(R.id.forecastweather);
+        recyclerViewdaily=findViewById(R.id.forecastweatherday);
         icon=findViewById(R.id.iconweather);
         weatherhome=findViewById(R.id.weatherhome);
         progressBar=findViewById(R.id.ProgressBar);
-        timetext=findViewById(R.id.timetext);
+        sunsetV=findViewById(R.id.sunset);
+        toolbar=findViewById(R.id.toolbar);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -132,32 +168,15 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 
-            /*
-            tvCity.setText(addresses.get(0).getLocality());
-            tvState.setText(addresses.get(0).getAdminArea());
-            tvCountry.setText(addresses.get(0).getCountryName());
-            tvPin.setText(addresses.get(0).getPostalCode());
-            tvLocality.setText(addresses.get(0).getAddressLine(0));
-            */
-
-
             Toast.makeText(this,addresses.get(0).getLocality(), Toast.LENGTH_SHORT).show();
-
-
-
             String city=addresses.get(0).getLocality();
-
-
-
-
-
-
-            String link="https://api.openweathermap.org/data/2.5/forecast?lat="+location.getLatitude()+"&lon="+location.getLongitude()+"&appid=7b77e2f70d3bf662b1941efa517c5a7a&cnt=40&units=metric";
+            String wilaya=addresses.get(0).getAdminArea();
+            String link="https://api.openweathermap.org/data/2.5/forecast?lat="+location.getLatitude()+"&lon="+location.getLongitude()+"&appid=7b77e2f70d3bf662b1941efa517c5a7a&cnt=100&units=metric";
 
 
             String key="7b77e2f70d3bf662b1941efa517c5a7a";
             RequestQueue queue= Volley.newRequestQueue(HomeActivity.this);
-            //String link="https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=7b77e2f70d3bf662b1941efa517c5a7a";
+
             JsonObjectRequest request=new JsonObjectRequest(Request.Method.GET, link, null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
@@ -166,28 +185,27 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
                         progressBar.setVisibility(View.GONE);
                         weatherhome.setVisibility(View.VISIBLE);
-                        //Toast.makeText(MainActivity.this,response.getJSONArray("list").getJSONObject(0).getJSONObject("main").getString("temp"), Toast.LENGTH_SHORT).show();
-                        // Toast.makeText(MainActivity.this,response.getJSONArray("list").getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description"), Toast.LENGTH_SHORT).show();
-                        //  Toast.makeText(MainActivity.this,response.getJSONArray("list").getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("icon"), Toast.LENGTH_SHORT).show();
-
                         String iconString =response.getJSONArray("list").getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("icon");
-                        //Toast.makeText(MainActivity.this,iconString, Toast.LENGTH_SHORT).show();
+                        String dayOrngiht =response.getJSONArray("list").getJSONObject(0).getJSONObject("sys").getString("pod");
 
-                        citynamev.setText(city);
-                        //Toast.makeText(HomeActivity.this,response.getJSONArray("list").getJSONObject(0).getJSONObject("wind").getString("speed"), Toast.LENGTH_SHORT).show();
+                        citynamev.setText(wilaya+", "+city);
 
                         String iconlink="https://openweathermap.org/img/wn/"+iconString+"@4x.png";
 
+                        toolbar.setTitle(city);
 
 
 
-                        Picasso.get().load(iconlink).into(icon);
+
+                        //icon.setImageResource(R.drawable.clearskyday);
+                       // Picasso.get().load(iconlink).into(icon);
                         int tempS=response.getJSONArray("list").getJSONObject(0).getJSONObject("main").getInt("temp");
                         tempv.setText(String.valueOf(tempS));
                         String condition=response.getJSONArray("list").getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description");
                         conditionv.setText(condition);
+                        int drawbleResult=getWeatherIcon(iconString);
 
-
+                        icon.setImageResource(drawbleResult);
 
 
 
@@ -195,7 +213,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                         String time=date.substring(11,16);
 
 
-                        timetext.setText(date.substring(0,11));
+
 
                         int tempp0=response.getJSONArray("list").getJSONObject(0).getJSONObject("main").getInt("temp");
                         String weatherdes=response.getJSONArray("list").getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description");
@@ -208,19 +226,132 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                             String datei=response.getJSONArray("list").getJSONObject(i).getString("dt_txt");
                             String timei=datei.substring(11,16);
                             int tempp=response.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("temp");
+                            String humidity=response.getJSONArray("list").getJSONObject(i).getJSONObject("main").getString("humidity");
                             //String weatherdes=response.getJSONArray("list").getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description");
                             String iconnamei=response.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("icon");
                             String windspeedi=response.getJSONArray("list").getJSONObject(i).getJSONObject("wind").getString("speed");  //meter/sec
-                            weatherForcaste.add(new WeatherModel(timei,String.valueOf(tempp)+" °C",iconnamei,windspeedi+"m/s"));
+                            //Toast.makeText(getApplicationContext(),humidity,Toast.LENGTH_SHORT).show();
+                            weatherForcaste.add(new WeatherModel(timei,String.valueOf(tempp)+" °C",iconnamei,windspeedi+"m/s", humidity));
+                           // weatherForcastedaily.add(new WeatherModelDaily(timei,String.valueOf(tempp),String.valueOf(tempp),iconnamei,iconnamei,windspeedi+"m/s"));
 
                         }
 
 
 
 
-                        //Toast.makeText(HomeActivity.this,windspeed, Toast.LENGTH_SHORT).show();
+                        Date dt = new Date();
+                        Calendar c = Calendar.getInstance();
+                        c.setTime(dt);
+                        c.add(Calendar.DATE, 1); //day +1
+                        dt = c.getTime();
 
-                        //weatherForcaste.add(new WeatherModel(time,String.valueOf(tempp0),iconname,windspeed));
+
+                        Date dt2 = new Date();
+                        Calendar c2 = Calendar.getInstance();
+                        c2.setTime(dt2);
+                        c2.add(Calendar.DATE, 2); //day +1
+                        dt2 = c2.getTime();
+
+
+
+
+                        Date dt3 = new Date();
+                        Calendar c3 = Calendar.getInstance();
+                        c3.setTime(dt3);
+                        c3.add(Calendar.DATE, 3); //day +1
+                        dt3 = c3.getTime();
+
+
+
+
+                        Date dt4 = new Date();
+                        Calendar c4 = Calendar.getInstance();
+                        c4.setTime(dt4);
+                        c4.add(Calendar.DATE, 4); //day +1
+                        dt4 = c4.getTime();
+
+
+
+                        Date dt5 = new Date();
+                        Calendar c5 = Calendar.getInstance();
+                        c5.setTime(dt5);
+                        c5.add(Calendar.DATE, 5); //day +1
+                        dt5 = c5.getTime();
+
+                        String currentDatePlusOne = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(dt);
+                        String currentDatePlusTwo = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(dt2);
+                        String currentDatePlusThree = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(dt3);
+                        String currentDatePlusFour = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(dt4);
+                        String currentDatePlusFive= new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(dt5);
+
+
+
+
+                        Long sunset=response.getJSONObject("city").getLong("sunset");
+                        Long sunriselong=response.getJSONObject("city").getLong("sunrise");
+                        Date longs=new Date(sunset*1000);
+                        Date longss=new Date(sunriselong*1000);
+
+
+                        sunsetV.setText(longs.toString().substring(11,16));
+                        sunrise.setText(longss.toString().substring(11,16));
+
+                      // Toast.makeText(HomeActivity.this, longs.toString().substring(11,16), Toast.LENGTH_SHORT).show();
+
+
+
+                        SimpleDateFormat outFormat = new SimpleDateFormat("EEEE");
+                        String goal = outFormat.format(dt); //get day name
+
+                        //String datnext=response.getJSONArray("list").getJSONObject(4).getString("dt_txt");
+
+                        //
+                        Calendar cc=Calendar.getInstance();
+                        cc.setTimeInMillis(1657515253);
+
+
+                        Toast.makeText(HomeActivity.this, currentDatePlusOne, Toast.LENGTH_SHORT).show();
+
+                        for (int i=8;i<100;i=i+2)
+                        {
+                            String datei=response.getJSONArray("list").getJSONObject(i).getString("dt_txt");
+                            String windspeedd=response.getJSONArray("list").getJSONObject(i).getJSONObject("wind").getString("speed");  //meter/sec
+                            int tempp=response.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("temp");
+                            //String weatherdes=response.getJSONArray("list").getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description");
+                            String iconnamei=response.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("icon");
+
+                            String onlyday=datei.substring(0,10);
+                            String onlydtime=datei.substring(11);
+                            String dayname=null;
+                            if (currentDatePlusOne.equals(onlyday))
+                            {
+                                Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(currentDatePlusOne);
+                                dayname = outFormat.format(date1); //get day name
+
+                            }
+                            else if (currentDatePlusTwo.equals(onlyday))
+                            {
+                                Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(currentDatePlusTwo);
+                                dayname = outFormat.format(date1); //get day name
+                            }
+                            else if (currentDatePlusThree.equals(onlyday))
+                            {
+                                Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(currentDatePlusThree);
+                                dayname = outFormat.format(date1); //get day name
+                            }
+                            else if (currentDatePlusFour.equals(onlyday))
+                            {
+                                Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(currentDatePlusFour);
+                                dayname = outFormat.format(date1); //get day name
+                            }
+                            else if (currentDatePlusFive.equals(onlyday))
+                            {
+                                Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(currentDatePlusFive);
+                                dayname = outFormat.format(date1); //get day name
+                            }
+
+                            weatherForcastedaily.add(new WeatherModelDaily(dayname+" "+onlydtime,String.valueOf(tempp)+" °C",iconnamei,windspeedd+" m/s"));
+                        }
 
 
 
@@ -229,7 +360,9 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                         e.printStackTrace();
 
 
-                        Toast.makeText(HomeActivity.this, "no answer", Toast.LENGTH_SHORT).show();
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
                     }
 
                     //conditionv.setText(response.toString());
@@ -250,11 +383,31 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
-    @Override
-    public void onLocationChanged(@NonNull List<Location> locations) {
-        LocationListener.super.onLocationChanged(locations);
+    private int getWeatherIcon(String iconString) {
+        int drwblresult=R.drawable.clearskyday;
 
+        if (iconString.equals("01d")) drwblresult=R.drawable.clearskyday;
+        if (iconString.equals("01n")) drwblresult=R.drawable.clearskynight;
+        if (iconString.equals("02d")) drwblresult=R.drawable.fewcloudsday;
+        if (iconString.equals("02n")) drwblresult=R.drawable.fewcloudsnight;
+        if (iconString.equals("03d")) drwblresult=R.drawable.scattered_cloudsnd;
+        if (iconString.equals("03n")) drwblresult=R.drawable.scattered_cloudsnd;
+        if (iconString.equals("04d")) drwblresult=R.drawable.brokencloudsdn;
+        if (iconString.equals("04n")) drwblresult=R.drawable.brokencloudsdn;
+        if (iconString.equals("09d")) drwblresult=R.drawable.showerraindn;
+        if (iconString.equals("09n")) drwblresult=R.drawable.showerraindn;
+        if (iconString.equals("10d")) drwblresult=R.drawable.rain_day;
+        if (iconString.equals("10n")) drwblresult=R.drawable.rain_night;
+        if (iconString.equals("11d")) drwblresult=R.drawable.thunderstromdn;
+        if (iconString.equals("11n")) drwblresult=R.drawable.thunderstromdn;
+        if (iconString.equals("13d")) drwblresult=R.drawable.snowdn;
+        if (iconString.equals("13n")) drwblresult=R.drawable.snowdn;
+        if (iconString.equals("50d")) drwblresult=R.drawable.mist_day;
+        if (iconString.equals("50n")) drwblresult=R.drawable.mist_night;
+
+        return drwblresult;
     }
+
 
     @Override
     public void onFlushComplete(int requestCode) {
@@ -277,7 +430,12 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     }
 
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menutoolbar,menu);
+        return true;
+    }
 
     private void locationEnabled() {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -315,7 +473,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10000, 10, (LocationListener) this);
         } catch (SecurityException e) {
-            Toast.makeText(this, "failed to get location", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "failed to get location", Toast.LENGTH_SHORT).show();
             getLocation();
             e.printStackTrace();
         }

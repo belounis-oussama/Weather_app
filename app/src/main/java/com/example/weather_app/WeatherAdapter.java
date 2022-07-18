@@ -1,5 +1,6 @@
 package com.example.weather_app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
         return new ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull WeatherAdapter.ViewHolder holder, int position) {
 
@@ -44,6 +46,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
 
 
             holder.time.setText(weatherModel.getTime());
+            holder.humidity.setText(weatherModel.getHumidity());
 
 
         Picasso.get().load(weatherModel.getIcon()).into(holder.condition);
@@ -60,7 +63,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
 
 
 
-        private TextView windSpeed,temp,time;
+        private TextView windSpeed,temp,time,humidity;
         private ImageView condition;
 
 
@@ -71,6 +74,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
             temp=itemView.findViewById(R.id.itemtemp);
             time=itemView.findViewById(R.id.itemtime);
             condition=itemView.findViewById(R.id.condition);
+            humidity=itemView.findViewById(R.id.itemhumidity);
 
 
 
