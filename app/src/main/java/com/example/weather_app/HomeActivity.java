@@ -158,6 +158,10 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId()==R.id.settings)
+        {
+            startActivity(new Intent(HomeActivity.this, com.example.weather_app.Settings.class));
+        }
         return super.onOptionsItemSelected(item);
     }
 
