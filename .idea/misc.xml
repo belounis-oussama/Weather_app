@@ -7,13 +7,28 @@
         <entry key="app/src/main/res/drawable/brokencloudsdn.xml" value="0.1825" />
         <entry key="app/src/main/res/drawable/buttonbackgroud.xml" value="0.1825" />
         <entry key="app/src/main/res/drawable/clearskyday.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/clearskynight.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/fewcloudsday.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/fewcloudsnight.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/ic_ep_sunrise.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/ic_ep_sunset.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/ic_round_arrow_back_ios_24.xml" value="0.1825" />
         <entry key="app/src/main/res/drawable/itembackgroud.xml" value="0.1825" />
         <entry key="app/src/main/res/drawable/kebab_menu_icon.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/mist_day.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/mist_night.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/rain_day.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/rain_night.xml" value="0.1825" />
         <entry key="app/src/main/res/drawable/rand.xml" value="0.1825" />
         <entry key="app/src/main/res/drawable/recyclebackgroud.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/scattered_cloudsnd.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/showerraindn.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/snowdn.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/thunderstromdn.xml" value="0.1825" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/chooseunit.xml" value="0.21" />
         <entry key="app/src/main/res/layout/dailyweatheritem.xml" value="0.33" />
         <entry key="app/src/main/res/layout/weatheritem.xml" value="0.75" />
         <entry key="app/src/main/res/menu/menutoolbar.xml" value="0.21458333333333332" />

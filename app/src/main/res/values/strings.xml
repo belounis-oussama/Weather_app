@@ -3,6 +3,7 @@
     <string name="setting">Settings</string>
     <string name="unit">Unit</string>
     <string name="tempunit">°C</string>
+    <string name="tempunitk">°K</string>
     <string name="location">Location</string>
     <string name="automatic">Automatic</string>
     <string name="notification">Notification</string>

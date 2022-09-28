@@ -8,6 +8,7 @@
     android:id="@+id/weatherhome"
     tools:context=".HomeActivity">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"

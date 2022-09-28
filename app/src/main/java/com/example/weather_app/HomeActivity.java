@@ -140,6 +140,12 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
     private void initWidget() {
         citynamev=findViewById(R.id.cityname);
         tempv=findViewById(R.id.Temp);
